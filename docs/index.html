@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gander</title>
+<meta name="description" content="A VR mod for Untitled Goose Game. It's a lovely morning in the village, and you are a horrible goose.">
+<meta name="theme-color" content="#3C6BD6">
+<link rel="icon" href="favicon.ico">
+<link rel="canonical" href="https://gander.ernie.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gander">
+<meta property="og:title" content="Gander">
+<meta property="og:description" content="A VR mod for Untitled Goose Game. It's a lovely morning in the village, and you are a horrible goose.">
+<meta property="og:url" content="https://gander.ernie.io/">
+<meta property="og:image" content="https://gander.ernie.io/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The goose at a gallop, wings out, wearing a VR headset, beside the Gander wordmark">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gander.ernie.io/social.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<style>
+:root {
+  --blue: #3C6BD6;
+  --paper: #FEF8E6;
+  --rule: #8EACDC;
+  --margin: #CF8280;
+  --ink: #25231A;
+  --red: #C0392B;
+  --sign-green: #0A5E3D;
+  --ui: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --type: "Courier Prime", "Courier New", Courier, monospace;
+  --gap: 34px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--blue); color: var(--ink); font-family: var(--ui); font-size: 17px; line-height: 1.5; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+.title { background: var(--blue); color: #fff; }
+.title .in {
+  max-width: 1080px; margin: 0 auto;
+  padding-block: 28px 44px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 1fr; gap: 8px 28px; align-items: center;
+}
+.title .brand { width: min(300px, 70%); }
+.title .word { width: 100%; }
+.title .kicker { margin: 4px 0 0; font-size: 15px; line-height: 22px; opacity: .92; text-align: right; }
+.title .kicker a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.55); }
+.title .kicker a:hover, .title .kicker a:focus-visible { text-decoration-color: #fff; outline: none; }
+.title .goose { width: min(100%, 560px); margin: 8px 0 0 -6%; }
+.title .say { display: grid; gap: 10px; margin-top: 10px; }
+.title .say img { height: 24px; width: auto; max-width: 100%; }
+.row { display: flex; gap: 7px; align-items: flex-start; flex-wrap: wrap; }
+.title .say .row img { height: 28.4px; }
+.trailer { grid-column: 1 / -1; justify-self: center; margin-top: 28px; max-width: 880px; width: 100%; aspect-ratio: 16 / 9; background: #1E3C86; border: 3px solid #fff; border-radius: 12px; box-shadow: 0 0 0 2px rgba(0,0,0,.18); display: grid; place-items: center; color: #fff; text-decoration: none; }
+.trailer .play { width: 0; height: 0; border-left: 34px solid #fff; border-top: 20px solid transparent; border-bottom: 20px solid transparent; margin-left: 6px; }
+.trailer .label { font-size: 14px; line-height: 20px; opacity: .85; margin-top: 12px; }
+.trailer .inner { display: grid; justify-items: center; }
+.cta { margin-top: 26px; display: grid; gap: 10px; justify-items: start; }
+.sign { display: inline-block; text-decoration: none; line-height: 0; }
+.sign svg { height: 58px; width: auto; display: block; }
+.sign:focus-visible { outline: 3px solid #fff; outline-offset: 6px; }
+.cta .file { font-size: 14px; line-height: 20px; opacity: .9; font-variant-numeric: tabular-nums; }
+@media (min-width: 820px) {
+  .title .in { grid-template-columns: 1.1fr 1fr; padding-block: 40px 56px; }
+  .title .goose { grid-row: 1 / span 2; margin: 0 0 0 -8%; width: 100%; }
+  .title .brand { width: 340px; }
+  .title .say img { height: 28px; }
+  .row { gap: 8px; }
+  .title .say .row img { height: 33.1px; }
+  .trailer { margin-top: 44px; }
+}
+
+.pages {
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.nav { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 0 auto 26px; height: 32px; }
+.nav button, .nav a { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; color: #fff; }
+.nav button svg { width: 14px; height: 22px; }
+.nav button:disabled { opacity: .35; cursor: default; }
+.nav a::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #fff; transition: width .15s, height .15s; }
+.nav a[aria-current="page"]::before { width: 24px; height: 24px; }
+.nav button:focus-visible, .nav a:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.deck { --w: min(514px, calc(100vw - 72px)); --g: 40px; overflow: hidden; overflow: clip; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) calc(-1 * max(16px, env(safe-area-inset-right, 0px))); }
+.track {
+  --i: 0;
+  display: flex; align-items: stretch; gap: var(--g);
+  padding-inline: calc(50% - var(--w) / 2);
+  transform: translateX(calc(var(--i) * -1 * (var(--w) + var(--g))));
+  transition: transform .38s cubic-bezier(.3, .7, .25, 1);
+}
+.track > .sheet { flex: 0 0 var(--w); width: var(--w); max-width: none; transition: opacity .38s ease; }
+.track > .sheet:not(.current) { opacity: .42; cursor: pointer; }
+.track > .sheet:not(.current):hover { opacity: .6; }
+.track > .sheet:not(.current) * { pointer-events: none; }
+@media (max-width: 560px) { .deck { --g: 14px; } }
+.track.still, .track.still > .sheet { transition: none; }
+@media (prefers-reduced-motion: reduce) { .track, .track > .sheet { transition: none; } }
+.sheet {
+  --mx: 52px;
+  position: relative; overflow: hidden;
+  width: 514px; max-width: 100%;
+  border-radius: 0 19px 19px 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right, transparent calc(var(--mx) - 1px), var(--margin) calc(var(--mx) - 1px), var(--margin) calc(var(--mx) + 1px), transparent calc(var(--mx) + 1px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--gap) - 2px), var(--rule) calc(var(--gap) - 2px), var(--rule) var(--gap));
+  background-position: 0 0, 0 29px;
+  padding: 69px 24px calc(var(--gap) - 8px) 79px;
+  font-family: var(--type); font-style: italic; font-size: 18px; line-height: var(--gap);
+  font-variant-ligatures: none; font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
+}
+.sheet::before, .sheet::after { content: ""; position: absolute; left: 0; right: 0; pointer-events: none; }
+.sheet::before { top: 0; height: 52px; background: linear-gradient(to right, transparent calc(var(--mx) - 1px), var(--margin) calc(var(--mx) - 1px), var(--margin) calc(var(--mx) + 1px), transparent calc(var(--mx) + 1px)), var(--paper); }
+.sheet::after { top: 52px; height: 2px; background: linear-gradient(to right, transparent calc(var(--mx) - 1px), var(--margin) calc(var(--mx) - 1px), var(--margin) calc(var(--mx) + 1px), transparent calc(var(--mx) + 1px)), var(--rule); }
+@font-face { font-family: "Learning Curve"; src: url("fonts/LearningCurve-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: block; }
+.sheet h2 { position: absolute; z-index: 1; margin: 0; left: 77px; top: calc(48px - 58px * 0.7243); font: 700 50.37px/58px "Learning Curve", "Segoe Script", cursive; -webkit-text-stroke: 0.46px currentColor; color: var(--ink); white-space: nowrap; }
+.sheet .body { position: relative; z-index: 1; }
+
+.sheet { display: flex; flex-direction: column; }
+.sheet .doodle { position: relative; z-index: 1; width: min(470px, 92%); height: auto; align-self: center; margin-block: auto; order: 2; transform: rotate(-6deg); pointer-events: none; }
+.sheet p, .sheet li { margin: 0; }
+.sheet ol { margin: 0; padding-left: 28px; }
+.sheet ol li::marker { font-weight: 700; }
+.sheet code { font-family: inherit; font-style: normal; font-weight: 700; }
+.sheet a { font-weight: 700; }
+.sheet .gap { height: var(--gap); }
+.sheet a, .sheet .under { text-decoration: none; padding-bottom: 3px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4.53 L2 4.58 L4 4.52 L6 4.42 L8 4.31 L10 4.25 L12 4.27 L14 4.36 L16 4.48 L18 4.58 L20 4.60 L22 4.50 L24 4.25 L26 3.89 L28 3.47 L30 3.07 L32 2.74 L34 2.57 L36 2.56 L38 2.70 L40 2.95 L42 3.24 L44 3.52 L46 3.72 L48 3.84 L50 3.88 L52 3.88 L54 3.91 L56 3.99 L58 4.16 L60 4.42 L62 4.73 L64 5.05 L66 5.29 L68 5.42 L70 5.41 L72 5.25 L74 4.98 L76 4.65 L78 4.33 L80 4.07 L82 3.89 L84 3.81 L86 3.81 L88 3.84 L90 3.87 L92 3.85 L94 3.79 L96 3.67 L98 3.52 L100 3.40 L102 3.33 L104 3.36 L106 3.48 L108 3.68 L110 3.94 L112 4.21 L114 4.43 L116 4.59 L118 4.64 L120 4.61 L122 4.52 L124 4.39 L126 4.27 L128 4.18 L130 4.14 L132 4.15 L134 4.18 L136 4.19 L138 4.16 L140 4.05 L142 3.88 L144 3.64 L146 3.38 L148 3.14 L150 2.96 L152 2.88 L154 2.92 L156 3.06 L158 3.27 L160 3.51 L162 3.73 L164 3.89 L166 3.99 L168 4.02 L170 4.03 L172 4.04 L174 4.10 L176 4.23 L178 4.43 L180 4.68 L182 4.93 L184 5.12 L186 5.21 L188 5.15 L190 4.95 L192 4.64 L194 4.27 L196 3.92 L198 3.63 L200 3.47 L202 3.42 L204 3.48 L206 3.58 L208 3.69 L210 3.75 L212 3.73 L214 3.64 L216 3.52 L218 3.42 L220 3.40 L222 3.50 L224 3.75 L226 4.11 L228 4.53 L230 4.93 L232 5.26 L234 5.43 L236 5.44 L238 5.30 L240 5.05 L242 4.76 L244 4.48 L246 4.28 L248 4.16 L250 4.12 L252 4.12 L254 4.09 L256 4.01 L258 3.84 L260 3.58 L262 3.27 L264 2.95 L266 2.71 L268 2.58 L270 2.59 L272 2.75 L274 3.02 L276 3.35 L278 3.67 L280 3.93 L282 4.11 L284 4.19 L286 4.19 L288 4.16 L290 4.13 L292 4.15 L294 4.21 L296 4.33 L298 4.48 L300 4.60 L302 4.67 L304 4.64 L306 4.52 L308 4.32 L310 4.06 L312 3.79 L314 3.57 L316 3.41 L318 3.36 L320 3.39 L322 3.48 L324 3.61 L326 3.73 L328 3.82 L330 3.86 L332 3.85 L334 3.82 L336 3.81 L338 3.84 L340 3.95 L342 4.12 L344 4.36 L346 4.62 L348 4.86 L350 5.04 L352 5.12 L354 5.08 L356 4.94 L358 4.73 L360 4.49 L362 4.27 L364 4.11 L366 4.01 L368 3.98 L370 3.97 L372 3.96 L374 3.90 L376 3.77 L378 3.57 L380 3.32 L382 3.07 L384 2.88 L386 2.79 L388 2.85 L390 3.05 L392 3.36 L394 3.73 L396 4.08 L398 4.37 L400 4.53' fill='none' stroke='%2325231A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: repeat-x; background-position: left calc(100% - 1px); background-size: 400px 8px; color: inherit; }
+.sheet a:hover, .sheet a:focus-visible { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4.53 L2 4.58 L4 4.52 L6 4.42 L8 4.31 L10 4.25 L12 4.27 L14 4.36 L16 4.48 L18 4.58 L20 4.60 L22 4.50 L24 4.25 L26 3.89 L28 3.47 L30 3.07 L32 2.74 L34 2.57 L36 2.56 L38 2.70 L40 2.95 L42 3.24 L44 3.52 L46 3.72 L48 3.84 L50 3.88 L52 3.88 L54 3.91 L56 3.99 L58 4.16 L60 4.42 L62 4.73 L64 5.05 L66 5.29 L68 5.42 L70 5.41 L72 5.25 L74 4.98 L76 4.65 L78 4.33 L80 4.07 L82 3.89 L84 3.81 L86 3.81 L88 3.84 L90 3.87 L92 3.85 L94 3.79 L96 3.67 L98 3.52 L100 3.40 L102 3.33 L104 3.36 L106 3.48 L108 3.68 L110 3.94 L112 4.21 L114 4.43 L116 4.59 L118 4.64 L120 4.61 L122 4.52 L124 4.39 L126 4.27 L128 4.18 L130 4.14 L132 4.15 L134 4.18 L136 4.19 L138 4.16 L140 4.05 L142 3.88 L144 3.64 L146 3.38 L148 3.14 L150 2.96 L152 2.88 L154 2.92 L156 3.06 L158 3.27 L160 3.51 L162 3.73 L164 3.89 L166 3.99 L168 4.02 L170 4.03 L172 4.04 L174 4.10 L176 4.23 L178 4.43 L180 4.68 L182 4.93 L184 5.12 L186 5.21 L188 5.15 L190 4.95 L192 4.64 L194 4.27 L196 3.92 L198 3.63 L200 3.47 L202 3.42 L204 3.48 L206 3.58 L208 3.69 L210 3.75 L212 3.73 L214 3.64 L216 3.52 L218 3.42 L220 3.40 L222 3.50 L224 3.75 L226 4.11 L228 4.53 L230 4.93 L232 5.26 L234 5.43 L236 5.44 L238 5.30 L240 5.05 L242 4.76 L244 4.48 L246 4.28 L248 4.16 L250 4.12 L252 4.12 L254 4.09 L256 4.01 L258 3.84 L260 3.58 L262 3.27 L264 2.95 L266 2.71 L268 2.58 L270 2.59 L272 2.75 L274 3.02 L276 3.35 L278 3.67 L280 3.93 L282 4.11 L284 4.19 L286 4.19 L288 4.16 L290 4.13 L292 4.15 L294 4.21 L296 4.33 L298 4.48 L300 4.60 L302 4.67 L304 4.64 L306 4.52 L308 4.32 L310 4.06 L312 3.79 L314 3.57 L316 3.41 L318 3.36 L320 3.39 L322 3.48 L324 3.61 L326 3.73 L328 3.82 L330 3.86 L332 3.85 L334 3.82 L336 3.81 L338 3.84 L340 3.95 L342 4.12 L344 4.36 L346 4.62 L348 4.86 L350 5.04 L352 5.12 L354 5.08 L356 4.94 L358 4.73 L360 4.49 L362 4.27 L364 4.11 L366 4.01 L368 3.98 L370 3.97 L372 3.96 L374 3.90 L376 3.77 L378 3.57 L380 3.32 L382 3.07 L384 2.88 L386 2.79 L388 2.85 L390 3.05 L392 3.36 L394 3.73 L396 4.08 L398 4.37 L400 4.53' fill='none' stroke='%23C0392B' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); outline: none; }
+@media (max-width: 560px) { .sheet { --mx: 36px; padding-left: 58px; padding-right: 16px; } .sheet h2 { left: 57px; } }
+@property --k { syntax: "<length>"; inherits: true; initial-value: 0px; }
+.sheet .sticker { --s: 132px; --peel: .63; --k: 0px; position: absolute; z-index: 2; width: var(--s); height: var(--s); padding: 0; background: none; transition: --k .25s ease; }
+.sheet .sticker:hover, .sheet .sticker:focus-visible { --k: calc(var(--s) * var(--peel)); background: none; outline: none; }
+.sheet .sticker.server { right: 26px; bottom: 16px; transform: rotate(9deg); }
+.sheet .sticker.logo { --s: 104px; --peel: .64; right: 168px; bottom: 26px; transform: rotate(-7deg); }
+.sticker .face { position: absolute; inset: 0; clip-path: polygon(calc(var(--k) + 8px) -8px, calc(100% + 8px) -8px, calc(100% + 8px) calc(100% + 8px), -8px calc(100% + 8px), -8px calc(var(--k) + 8px)); }
+.sticker .face img { width: 100%; height: 100%; }
+.server .face img { border-radius: 50%; border: 6px solid #fff; box-shadow: 0 0 3px rgba(37,35,26,.45); }
+.logo .face img { filter: drop-shadow(0 0 1.5px rgba(37,35,26,.45)); }
+.server:focus-visible .face img { box-shadow: 0 0 0 3px var(--red), 0 0 3px rgba(37,35,26,.45); }
+.logo:focus-visible .face img { filter: drop-shadow(0 0 2px var(--red)) drop-shadow(0 0 1px var(--red)); }
+.sticker .lift { position: absolute; inset: 0; filter: drop-shadow(0 0 2px rgba(37,35,26,.4)); }
+.sticker .flap { position: absolute; left: 0; top: 0; width: var(--s); height: var(--s); transform-origin: 0 0; transform: translate(var(--k), var(--k)) matrix(0, -1, -1, 0, 0, 0);
+  clip-path: polygon(-8px -8px, calc(var(--k) + 8px) -8px, -8px calc(var(--k) + 8px));
+  background: linear-gradient(135deg, #ffffff, #f3f3f2 calc(var(--k) * .7071 - 3px), #cacac8 calc(var(--k) * .7071)); }
+.server .flap { border-radius: 50%; }
+.logo .flap { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-18.48 -33.80 163.60 163.60%22%3E%3Cpath d=%22M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z%22 fill=%22%23000%22 stroke=%22%23000%22 stroke-width=%2226.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-18.48 -33.80 163.60 163.60%22%3E%3Cpath d=%22M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z%22 fill=%22%23000%22 stroke=%22%23000%22 stroke-width=%2226.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+@media (max-width: 560px) { .sheet .sticker.server { --s: 120px; right: 16px; bottom: 18px; } .server .face img { border-width: 5px; } .sheet .sticker.logo { --s: 92px; right: 142px; bottom: 26px; } }
+@media (prefers-reduced-motion: reduce) { .sheet .sticker { transition: none; } }
+</style>
+</head>
+<body>
+<header class="title">
+  <div class="in">
+    <div class="brand">
+      <img class="word" src="wordmark-white.png" alt="Gander" width="619" height="139">
+      <p class="kicker">a VR mod for <a href="https://goose.game">Untitled Goose Game</a></p>
+    </div>
+    <img class="goose" src="goose.png" alt="The goose at a gallop, wings out, wearing a VR headset" width="1800" height="1380">
+    <div>
+      <div class="say" role="text" aria-label="It's a lovely morning in the village, and you are a horrible goose.">
+        <img src="text/tagline-white.png" alt="" width="1118" height="66">
+        <div class="row"><img src="text/p-andyou-white.png" alt=""><img src="text/p-are-heavyunder-white.png" alt=""><img src="text/p-rest-white.png" alt=""></div>
+      </div>
+      <div class="cta">
+        <a class="sign" id="download" href="https://github.com/ernie/gander-vr/releases/latest" aria-label="Download Gander"><svg viewBox="0 0 346 62" aria-hidden="true"><polygon points="2.5,2.5 318.5,2.5 342.5,30.5 318.5,58.5 2.5,58.5" fill="rgba(0,0,0,.28)"/><polygon points="0,0 316,0 340,28 316,56 0,56" fill="#fff"/><polygon points="2,2 315,2 337.4,28 315,54 2,54" fill="#0A5E3D"/><polyline points="304.2,14.6 315.4,28 304.2,41.4" fill="none" stroke="#fff" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><image href="icon-picnic.png" x="16.8" y="6.2" width="56" height="43.6" preserveAspectRatio="xMidYMid meet"/><image href="text/btn-white.png" x="89" y="19.3" width="194" height="22"/></svg></a>
+        <div class="file" id="file">for Windows &middot; one file</div>
+      </div>
+    </div>
+    <a class="trailer" href="#" aria-label="Trailer (placeholder)"><span class="inner"><span class="play"></span><span class="label">trailer (placeholder)</span></span></a>
+  </div>
+</header>
+
+<main class="pages">
+  <nav class="nav" aria-label="Pages">
+    <button class="prev" type="button" aria-label="Previous page" disabled><svg viewBox="0 0 14 22" aria-hidden="true"><polyline points="11,3 3,11 11,19" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <a href="#what-it-is" aria-label="what it is" title="what it is" aria-current="page"></a>
+    <a href="#getting-it" aria-label="getting it" title="getting it"></a>
+    <a href="#come-say-honk" aria-label="come say honk" title="come say honk"></a>
+    <a href="#the-small-print" aria-label="the small print" title="the small print"></a>
+    <button class="next" type="button" aria-label="Next page"><svg viewBox="0 0 14 22" aria-hidden="true"><polyline points="3,3 11,11 3,19" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </nav>
+  <div class="deck"><div class="track">
+  <article class="sheet current" id="what-it-is" aria-label="what it is">
+    <h2>what it is</h2>
+    <div class="body">
+      <p>Gander's aim is <span class="under">full goose embodiment</span>. What is that? Your head is the goose's. Your arms are its wings, and if you like, you can actually honk to honk. Or yell any expletive of your choice, which is what I imagine geese are actually saying when they are being horrible.</p>
+      <div class="gap"></div>
+      <p>If you'd like a less embodied experience, you can switch to a tabletop view, which lets you look down on yourself in third person.</p>
+      <div class="gap"></div>
+      <p>Local two-player mode is still supported, with one player on keyboard and mouse or a controller and the other in VR. Your movements are mirrored on your flatscreen goose.</p>
+    </div>
+  </article>
+  <article class="sheet" id="getting-it" aria-label="getting it">
+    <h2>getting it</h2>
+    <div class="body">
+      <p>You need Windows, Untitled Goose Game (preferably on Steam, though other installs should work), and a PCVR headset. Steam should be running if you want achievements.</p>
+      <div class="gap"></div>
+      <ol>
+        <li><a id="download-step" href="https://github.com/ernie/gander-vr/releases/latest">Download Gander</a>. It's just the one file.</li>
+        <li>Run it. It finds the game, installs everything it needs under <code>%LOCALAPPDATA%\Gander</code>, and adds a shortcut.</li>
+        <li>Put the headset on and start Gander from the shortcut. It starts the game by itself after a short count.</li>
+      </ol>
+      <div class="gap"></div>
+      <p>Nothing is written into the game folder. Starting anywhere but the launcher loads the flat game. Uninstall in "Add or remove programs".</p>
+    </div>
+  </article>
+  <article class="sheet" id="come-say-honk" aria-label="come say honk">
+    <h2>come say honk</h2>
+    <div class="body">
+      <p>Hey, I'm <a href="https://ernie.io">Ernie</a>. Sometimes I go by NilClass.</p>
+      <div class="gap"></div>
+      <p>Why'd I make this? Because from the first time that goose popped its head out of that bush, I was smiling. <a href="https://househouse.com">House House</a> made something that reminded me how truly <span class="under">playful</span> a game could be.</p>
+      <div class="gap"></div>
+      <p>I wanted to come back to this little village and see it through fresh eyes. A goose's eyes. And it makes me smile as much now as it did the first time. I hope you enjoy it, too.</p>
+      <div class="gap"></div>
+      <p>Come by the <a href="https://discord.gg/uJ5EPAXKfs">Discord</a> and say hello.</p>
+    </div>
+    <a class="sticker logo" href="https://discord.gg/uJ5EPAXKfs" aria-label="Join the Discord"><span class="face"><img src="discord-logo.svg" alt="" width="104" height="104"></span><span class="lift"><span class="flap"></span></span></a>
+    <a class="sticker server" href="https://discord.gg/uJ5EPAXKfs" aria-label="Join the Discord"><span class="face"><img src="discord-sticker.jpg" alt="" width="320" height="320"></span><span class="lift"><span class="flap"></span></span></a>
+  </article>
+  <article class="sheet" id="the-small-print" aria-label="the small print">
+    <img class="doodle" src="doodle-goose.png" alt="A doodle of the goose running, wings up, in a VR headset" width="1368" height="1071">
+    <h2>the small print</h2>
+    <div class="body">
+      <p>Gander is a fan project. House House didn't make it, and probably hasn't even seen it. If they do, and they get even half as much enjoyment out of it as I did making it, my day will have been made. Gander is free. See the <a href="https://github.com/ernie/gander-vr/blob/main/LICENSE">license</a> and <a href="https://github.com/ernie/gander-vr/blob/main/THIRD-PARTY-NOTICES.md">third-party notices</a> for more details.</p>
+    </div>
+  </article>
+  </div></div>
+</main>
+<script>
+(function () {
+  var sheets = Array.prototype.slice.call(document.querySelectorAll(".track > .sheet"));
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var prev = document.querySelector(".nav .prev"), next = document.querySelector(".nav .next");
+  var current = 0;
+  function indexOfHash() {
+    var id = location.hash.slice(1);
+    for (var i = 0; i < sheets.length; i++) if (sheets[i].id === id) return i;
+    return -1;
+  }
+  var track = document.querySelector(".track");
+  function show(i) {
+    current = Math.max(0, Math.min(sheets.length - 1, i));
+    track.style.setProperty("--i", current);
+    sheets.forEach(function (s, n) {
+      s.classList.toggle("current", n === current);
+      if (n === current) s.removeAttribute("aria-hidden"); else s.setAttribute("aria-hidden", "true");
+      Array.prototype.forEach.call(s.children, function (c) { c.inert = n !== current; });
+    });
+    dots.forEach(function (d, n) { if (n === current) d.setAttribute("aria-current", "page"); else d.removeAttribute("aria-current"); });
+    prev.disabled = current === 0;
+    next.disabled = current === sheets.length - 1;
+  }
+  sheets.forEach(function (s, n) { s.addEventListener("click", function () { if (n !== current) go(n); }); });
+  function go(i) {
+    i = Math.max(0, Math.min(sheets.length - 1, i));
+    if (i === current) return;
+    location.hash = sheets[i].id;
+  }
+  window.addEventListener("hashchange", function () { var i = indexOfHash(); if (i >= 0) show(i); });
+  prev.addEventListener("click", function () { go(current - 1); });
+  next.addEventListener("click", function () { go(current + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var t = e.target && e.target.tagName;
+    if (t === "INPUT" || t === "TEXTAREA") return;
+    if (e.key === "ArrowLeft") { go(current - 1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { go(current + 1); e.preventDefault(); }
+  });
+  var x0 = null, y0 = null;
+  var deck = document.querySelector(".deck");
+  deck.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
+    x0 = y0 = null;
+  });
+  var start = indexOfHash();
+  track.classList.add("still");
+  show(start >= 0 ? start : 0);
+  requestAnimationFrame(function () { requestAnimationFrame(function () { track.classList.remove("still"); }); });
+})();
+</script>
+
+<script>
+(function () {
+  fetch("https://api.github.com/repos/ernie/gander-vr/releases/latest", { headers: { "Accept": "application/vnd.github+json" } })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (rel) {
+      if (!rel || !rel.assets) return;
+      var exe = rel.assets.filter(function (a) { return /^Gander-.*\.exe$/.test(a.name); })[0];
+      if (!exe) return;
+      document.getElementById("download").href = exe.browser_download_url;
+      document.getElementById("download-step").href = exe.browser_download_url;
+      var mb = (exe.size / 1048576).toFixed(1);
+      document.getElementById("file").innerHTML = exe.name + " &middot; " + mb + " MB &middot; Windows";
+    })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>
