@@ -1,0 +1,48 @@
+Gander License
+
+Copyright (c) 2026 Ernie Miller. All rights reserved.
+
+Gander is an unofficial fan modification for Untitled Goose Game. It is not
+made by, endorsed by or affiliated with House House, and it includes nothing
+of the game's own code, art or data.
+
+"Gander" means the files published as a Gander release: Gander.exe (the
+launcher), Gander.dll, Gander.Core.dll, gander_native.dll and the files
+released alongside them, in whole or in part, together with these terms.
+
+1. Use. You may download, install and run Gander on computers you use, for
+   your own personal, non-commercial use, with your own copy of Untitled
+   Goose Game.
+
+2. Your own changes. You may modify Gander for your own use, and you may
+   reverse engineer Gander as far as is needed to debug such modifications.
+   (Gander loads BepInEx, which is licensed under the GNU Lesser General
+   Public License 2.1; this clause is the permission that license requires
+   of a work that uses it. BepInEx is not part of Gander and is not
+   redistributed by it: the launcher fetches it from its own release page.)
+
+3. No redistribution. You may not copy, publish, upload, sell, rent, host or
+   otherwise distribute Gander or any modified version of it, except that you
+   may share a link to the official release page. You may not remove or alter
+   this license or any copyright or attribution notice.
+
+4. Third-party components. Parts of Gander are, or are derived from, works
+   under other licenses. They are listed in THIRD-PARTY-NOTICES.md with their
+   terms, which apply to those parts and which this license does not narrow.
+
+5. Not the game. Gander is not a license to the game. You need your own copy
+   of Untitled Goose Game, under its own terms, to use Gander.
+
+6. No warranty. Gander is provided "as is", without warranty of any kind,
+   express or implied, including the warranties of merchantability, fitness
+   for a particular purpose and non-infringement. Virtual reality software
+   can cause discomfort; stop playing if it does.
+
+7. No liability. In no event shall the author be liable for any claim,
+   damages or other liability, whether in an action of contract, tort or
+   otherwise, arising from, out of or in connection with Gander or the use
+   of or inability to use Gander, including any effect on your copy of the
+   game, your saves or your computer.
+
+8. Term. This license ends if you break its terms. When it ends you must
+   stop using Gander and remove it; clauses 4, 6 and 7 survive.
