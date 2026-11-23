@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="The goose at a gallop, wings out, wearing a VR headset, beside the Gander wordmark">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gander.ernie.io/social.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:wght@500&family=Cinzel:wght@600&display=swap">
 <style>
 :root {
   --blue: #3C6BD6;
@@ -137,21 +137,29 @@ a { color: inherit; }
 @property --k { syntax: "<length>"; inherits: true; initial-value: 0px; }
 .sheet .sticker { --s: 132px; --peel: .63; --k: 0px; position: absolute; z-index: 2; width: var(--s); height: var(--s); padding: 0; background: none; transition: --k .25s ease; }
 .sheet .sticker:hover, .sheet .sticker:focus-visible { --k: calc(var(--s) * var(--peel)); background: none; outline: none; }
-.sheet .sticker.server { right: 26px; bottom: 16px; transform: rotate(9deg); }
-.sheet .sticker.logo { --s: 104px; --peel: .64; right: 168px; bottom: 26px; transform: rotate(-7deg); }
+.sheet .sticker.trinity { --peel: .34; right: 26px; bottom: 16px; transform: rotate(9deg); }
+.sheet .sticker.discord { --s: 112px; right: 168px; bottom: 26px; transform: rotate(-7deg); }
 .sticker .face { position: absolute; inset: 0; clip-path: polygon(calc(var(--k) + 8px) -8px, calc(100% + 8px) -8px, calc(100% + 8px) calc(100% + 8px), -8px calc(100% + 8px), -8px calc(var(--k) + 8px)); }
 .sticker .face img { width: 100%; height: 100%; }
-.server .face img { border-radius: 50%; border: 6px solid #fff; box-shadow: 0 0 3px rgba(37,35,26,.45); }
-.logo .face img { filter: drop-shadow(0 0 1.5px rgba(37,35,26,.45)); }
-.server:focus-visible .face img { box-shadow: 0 0 0 3px var(--red), 0 0 3px rgba(37,35,26,.45); }
-.logo:focus-visible .face img { filter: drop-shadow(0 0 2px var(--red)) drop-shadow(0 0 1px var(--red)); }
+.discord .face img { border-radius: 50%; border: 5px solid #fff; box-shadow: 0 0 3px rgba(37,35,26,.45); }
+.trinity .face img { filter: drop-shadow(0 0 1.5px rgba(37,35,26,.45)); }
+.discord:focus-visible .face img { box-shadow: 0 0 0 3px var(--red), 0 0 3px rgba(37,35,26,.45); }
+.trinity:focus-visible .face img { filter: drop-shadow(0 0 2px var(--red)) drop-shadow(0 0 1px var(--red)); }
+.trinity-note { position: absolute; right: -6px; bottom: 100%; padding-bottom: 12px; transform: rotate(-9deg); transform-origin: 100% 100%; opacity: 0; visibility: hidden; transition: opacity .15s ease, visibility .15s; }
+.trinity:hover .trinity-note, .trinity:focus-visible .trinity-note { opacity: 1; visibility: visible; }
+.trinity-note .card { display: block; width: 250px; padding: 10px 12px; border: 1px solid rgba(255,110,60,.55); border-radius: 6px; background: #141414; box-shadow: 0 8px 24px rgba(0,0,0,.45); color: #f0ece4; font: 500 14px/1.45 "Barlow", var(--ui); text-align: left; }
+.trinity-note b { color: #ff6e3c; font: 600 15px "Cinzel", Georgia, serif; letter-spacing: .04em; }
 .sticker .lift { position: absolute; inset: 0; filter: drop-shadow(0 0 2px rgba(37,35,26,.4)); }
 .sticker .flap { position: absolute; left: 0; top: 0; width: var(--s); height: var(--s); transform-origin: 0 0; transform: translate(var(--k), var(--k)) matrix(0, -1, -1, 0, 0, 0);
   clip-path: polygon(-8px -8px, calc(var(--k) + 8px) -8px, -8px calc(var(--k) + 8px));
   background: linear-gradient(135deg, #ffffff, #f3f3f2 calc(var(--k) * .7071 - 3px), #cacac8 calc(var(--k) * .7071)); }
-.server .flap { border-radius: 50%; }
-.logo .flap { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-18.48 -33.80 163.60 163.60%22%3E%3Cpath d=%22M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z%22 fill=%22%23000%22 stroke=%22%23000%22 stroke-width=%2226.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-18.48 -33.80 163.60 163.60%22%3E%3Cpath d=%22M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z%22 fill=%22%23000%22 stroke=%22%23000%22 stroke-width=%2226.4%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
-@media (max-width: 560px) { .sheet .sticker.server { --s: 120px; right: 16px; bottom: 18px; } .server .face img { border-width: 5px; } .sheet .sticker.logo { --s: 92px; right: 142px; bottom: 26px; } }
+/* The goose sticker peels back from its tail, the only part at its left edge. */
+.trinity .face { clip-path: polygon(var(--k) -8px, calc(100% + 8px) -8px, calc(100% + 8px) calc(100% + 8px), var(--k) calc(100% + 8px)); }
+.trinity .flap { transform: translate(calc(var(--k) * 2), 0) scaleX(-1); clip-path: polygon(-8px -8px, var(--k) -8px, var(--k) calc(100% + 8px), -8px calc(100% + 8px));
+  background: linear-gradient(90deg, #ffffff, #f3f3f2 calc(var(--k) - 3px), #cacac8 var(--k));
+  -webkit-mask: url("trinity-sticker.png") center / 100% 100% no-repeat; mask: url("trinity-sticker.png") center / 100% 100% no-repeat; }
+.discord .flap { border-radius: 50%; }
+@media (max-width: 560px) { .sheet .sticker.trinity { --s: 120px; right: 16px; bottom: 18px; } .sheet .sticker.discord { --s: 100px; right: 142px; bottom: 26px; } .discord .face img { border-width: 4px; } }
 @media (prefers-reduced-motion: reduce) { .sheet .sticker { transition: none; } }
 </style>
 </head>
@@ -222,8 +230,8 @@ a { color: inherit; }
       <div class="gap"></div>
       <p>Come by the <a href="https://discord.gg/uJ5EPAXKfs">Discord</a> and say hello.</p>
     </div>
-    <a class="sticker logo" href="https://discord.gg/uJ5EPAXKfs" aria-label="Join the Discord"><span class="face"><img src="discord-logo.svg" alt="" width="104" height="104"></span><span class="lift"><span class="flap"></span></span></a>
-    <a class="sticker server" href="https://discord.gg/uJ5EPAXKfs" aria-label="Join the Discord"><span class="face"><img src="discord-sticker.jpg" alt="" width="320" height="320"></span><span class="lift"><span class="flap"></span></span></a>
+    <a class="sticker discord" href="https://discord.gg/uJ5EPAXKfs" aria-label="Join the Discord"><span class="face"><img src="discord-sticker.jpg" alt="" width="320" height="320"></span><span class="lift"><span class="flap"></span></span></a>
+    <a class="sticker trinity" href="https://trinity.run" aria-label="Trinity, a modernized Quake III Arena with a focus on VR"><span class="face"><img src="trinity-sticker.png" alt="" width="400" height="400"></span><span class="lift"><span class="flap"></span></span><span class="trinity-note" aria-hidden="true"><span class="card">The goose is right at home in a chaotic Quake III Arena. Don't believe me? Come and see: <b>Trinity</b> is a modernized Quake III Arena with a focus on VR.</span></span></a>
   </article>
   <article class="sheet" id="the-small-print" aria-label="the small print">
     <img class="doodle" src="doodle-goose.png" alt="A doodle of the goose running, wings up, in a VR headset" width="1368" height="1071">
