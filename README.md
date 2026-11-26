@@ -6,6 +6,8 @@ It's a lovely morning in the village, and you **are** a horrible goose.
 
 **[Download Gander](../../releases/latest)** · [gander.ernie.io](https://gander.ernie.io)
 
+[Watch the release trailer](https://youtu.be/0tcuW5C7Qw8)
+
 ## What it is
 
 Gander's aim is <ins>total goose embodiment</ins>. What is that? Your head is the goose's. Your arms are its wings, and if you like, you can actually honk to honk. Or yell any expletive of your choice, which is what I imagine geese are actually saying when they are being horrible.
